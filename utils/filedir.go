@@ -594,7 +594,7 @@ Copy dir, change ownner (as user execute), change datetime modify
 Notes: Care full with recursive can't overload the File decriptor limit
 */
 func DirCopy(srcDir, dstDir string) error {
-	_, err := os.Stat(srcDir)
+	srcStat, err := os.Stat(srcDir)
 	if err != nil {
 		return fmt.Errorf("%s %s", srcDir, err)
 	}
@@ -602,7 +602,7 @@ func DirCopy(srcDir, dstDir string) error {
 	if err := os.MkdirAll(dstDir, 0755); err != nil {
 		return err
 	}
-
+	os.Chmod(dstDir, srcStat.Mode())
 	// Read the contents of the source directory
 	entries, err := os.ReadDir(srcDir)
 	if err != nil {
@@ -640,6 +640,7 @@ func DirCopyKeepOwner(srcDir, dstDir string) error {
 		return err
 	}
 	os.Chown(dstDir, int(srcStat.Sys().(*syscall.Stat_t).Uid), int(srcStat.Sys().(*syscall.Stat_t).Gid))
+	os.Chmod(dstDir, srcStat.Mode())
 
 	// Read the contents of the source directory
 	entries, err := os.ReadDir(srcDir)
