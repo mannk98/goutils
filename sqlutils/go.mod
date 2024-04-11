@@ -1,5 +1,7 @@
-module github.com/huntelaar112/goutils/sqlutils
+module github.com/mannk98/goutils/sqlutils
 
-go 1.21.4
+go 1.18
 
-require github.com/go-sql-driver/mysql v1.7.1 // indirect
+require github.com/go-sql-driver/mysql v1.8.1
+
+require filippo.io/edwards25519 v1.1.0 // indirect

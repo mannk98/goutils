@@ -1,3 +1,3 @@
-module github.com/huntelaar112/goutils
+module github.com/mannk98/goutils
 
-go 1.21.4
+go 1.18
