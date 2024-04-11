@@ -680,8 +680,9 @@ func DirMove(src, dst string) error {
 	if err := DirCopy(src, dst); err != nil {
 		return err
 	}
-	DirRemove(src)
-
+	if err := DirRemove(src); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -697,7 +698,9 @@ func DirMoveKeepOwner(src, dst string) error {
 	if err := DirCopyKeepOwner(src, dst); err != nil {
 		return err
 	}
-	DirRemove(src)
+	if err := DirRemove(src); err != nil {
+		return err
+	}
 
 	return nil
 }
