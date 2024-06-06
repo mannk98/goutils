@@ -133,6 +133,18 @@ func JsonParserBytes(bs []byte) gjson.Result {
 	return gjson.ParseBytes(bs)
 }
 
+/*
+	{
+	  "id": 125303,
+	  "iid": 5,
+	  "project_id": 2727,
+	  "sha": "984f9977c00a6b50642f4219dd9a303a9edcdfea",
+	  "ref": "master",
+	  "status": "success"
+	}
+
+id, err := utils.JsonStringFindElement(&result, "id")
+*/
 func JsonStringFindElement(strjson *string, pathSearch string) (string, error) {
 	if retmap, err := JsonStringFindElements(strjson, pathSearch); err == nil && len(retmap) != 0 {
 		keys := make([]string, 0, len(retmap))
