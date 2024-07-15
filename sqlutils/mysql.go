@@ -62,14 +62,19 @@ func MyqlSelect(database *sql.DB, query string) ([]OcrRequest, error) {
 } */
 
 // Write action
-func MysqlExec(database *sql.DB, query string) error {
+func MysqlExec(database *sql.DB, query string) (sql.Result, error) {
 	//doc_type := 0
 	//query := fmt.Sprintf("UPDATE history SET request_datetime = DATE_ADD(request_datetime, INTERVAL 7 HOUR) WHERE doc_type=%d AND request_datetime BETWEEN '2024-02-01 00:00:00' AND '2024-02-20 23:59:59'", doc_type)
 
 	fmt.Println(query)
-	_, err := database.Exec(query)
+	result, err := database.Exec(query)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return result, nil
 }
+
+/* func MysqlQuerryRow(database *sql.DB, query string) any {
+
+	database.QueryRow(query).Scan(&ram)
+} */
