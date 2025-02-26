@@ -16,12 +16,17 @@ function listDirInDir() {
     return 0
 }
 
-dirs=$(listDirInDir ./)
+dirs=$(listDirInDir .)
 #echo "$dirs"
 read -ra dirArray  <<< "$dirs"
+current_dir=$(pwd)
 #echo "${dirArray[@]}"
 
 for dir in "${dirArray[@]}"; do
 	echo  "update modules: $dir"
-	cd "$dir" && go get -u && cd ..
+	cd "${current_dir}" && {
+	  cd "$dir" && go get -u && go mod tidy #&
+	}
 done <<< "$dirArray"
+
+#wait

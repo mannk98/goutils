@@ -11,7 +11,7 @@ package sched
 import (
 	"errors"
 	"fmt"
-	"github.com/sonnt85/gotimeutils"
+	"github.com/mannk98/goutils/gotimeutils"
 	"strconv"
 	"strings"
 	"sync"
